@@ -9,7 +9,8 @@ package worlds
 
 	private var
 	    _timer:Timer,
-	    _fireman:Fireman;
+	    _fireman:Fireman,
+	    _faller:Faller;
 	
 	public function TrampolineCatcher():void {
 	    _timer = new Timer(FP.width - 120, 20, 10);
@@ -17,6 +18,9 @@ package worlds
 
 	    _fireman = new Fireman(-130, FP.height - 70);
 	    add(_fireman);
+
+	    _faller = new Faller(FP.halfWidth - 20, -40);
+	    add(_faller);
 	}
 
 	override public function update():void {
