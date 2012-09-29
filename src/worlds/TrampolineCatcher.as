@@ -10,7 +10,8 @@ package worlds
 	private var
 	    _timer:Timer,
 	    _fireman:Fireman,
-	    _faller:Faller;
+	    _faller:Faller,
+	    _success:Boolean = false;
 	
 	public function TrampolineCatcher():void {
 	    _timer = new Timer(FP.width - 120, 20, 10);
@@ -29,10 +30,16 @@ package worlds
 	    if (_faller.collideWith(_fireman, _faller.x, _faller.y) != null) {
 		_faller.stop();
 		_fireman.stop();
+		_success = true;
 	    }
 
 	    if (_timer.finished) {
-		FP.world = new TempAgency();
+		if (_success) {
+		    add(new SuccessSign());
+		}
+		else {
+		    FP.world = new TempAgency();
+		}
 	    }
 	}
     }
