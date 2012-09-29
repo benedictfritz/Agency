@@ -2,7 +2,7 @@ package worlds
 {
     import net.flashpunk.FP;
     import net.flashpunk.World;
-    import net.flashpunk.graphics.Image;
+    import net.flashpunk.graphics.Spritemap;
 
     import entities.*;
 
@@ -18,7 +18,10 @@ package worlds
 	    _done:Boolean = false;
 	
 	public function FiremanWorld():void {
-	    addGraphic(new Image(BACKGROUND));
+	    var backgroundSprite:Spritemap = new Spritemap(BACKGROUND, 640, 480);
+	    backgroundSprite.add("burn", [0, 1], 14, true);
+	    backgroundSprite.play("burn");
+	    addGraphic(backgroundSprite);
 
 	    _timer = new Timer(10);
 	    add(_timer);
