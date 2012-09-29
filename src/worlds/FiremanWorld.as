@@ -26,7 +26,7 @@ package worlds
 	    _timer = new Timer(10);
 	    add(_timer);
 
-	    _fireman = new Fireman(-130, FP.height - 70);
+	    _fireman = new Fireman(-130, FP.height - 80);
 	    add(_fireman);
 
 	    _faller = new Faller(FP.halfWidth - 20, 50);
