@@ -23,6 +23,8 @@ package worlds
 
 	    _faller = new Faller(FP.halfWidth - 20, -40);
 	    add(_faller);
+
+	    add(new MoneyTracker());
 	}
 
 	override public function update():void {
@@ -30,16 +32,18 @@ package worlds
 
 	    if (_done) { return; }
 
-	    if (_faller.collideWith(_fireman, _faller.x, _faller.y) != null) {
+	    if (_faller.collideWith(_fireman, _faller.x, _faller.y) != null
+		&& !_success) {
 		_faller.stop();
 		_fireman.stop();
 		_success = true;
 	    }
 
-	    if (_timer.finished) {
+	    if (_timer.finished && !_done) {
 		if (_success) {
 		    _done = true;
 		    add(new SuccessSign());
+		    MoneyTracker.money += 100;
 		    FP.alarm(2, playAgain);
 		}
 		else {

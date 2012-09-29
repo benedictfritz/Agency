@@ -5,6 +5,7 @@ package worlds
     import net.flashpunk.utils.Key;
     import net.flashpunk.utils.Input;
     import net.flashpunk.graphics.Text;
+    import net.flashpunk.graphics.Image;
 
     import entities.*;
 
@@ -17,8 +18,15 @@ package worlds
 	    jobsArray:Array,
 	    nextJob:World;
 
+	[Embed(source="../../assets/images/agency_background.png")]
+	    private const BACKGROUND:Class;
+
 	public function TempAgency():void {
-	    dialogueBox = new DialogueBox(0, 0, FP.halfWidth, FP.halfHeight);
+	    addGraphic(new Image(BACKGROUND));
+	    add(new MoneyTracker);
+
+	    dialogueBox = new DialogueBox(FP.halfWidth - 80, 10,
+					  FP.halfWidth + 80, FP.halfHeight);
 
 	    if (currentJobNumber == 0) {
 		dialogueBox.textArray =
