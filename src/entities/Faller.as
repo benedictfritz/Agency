@@ -22,5 +22,9 @@ package entities
 	    moveBy(0, FP.elapsed*_vy);
 	}
 
+	public function stop():void {
+	    _vy = 0;
+	}
+
     }
 }

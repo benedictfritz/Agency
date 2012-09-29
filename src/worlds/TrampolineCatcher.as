@@ -26,6 +26,11 @@ package worlds
 	override public function update():void {
 	    super.update();
 
+	    if (_faller.collideWith(_fireman, _faller.x, _faller.y) != null) {
+		_faller.stop();
+		_fireman.stop();
+	    }
+
 	    if (_timer.finished) {
 		FP.world = new TempAgency();
 	    }
