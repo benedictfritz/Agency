@@ -38,7 +38,7 @@ package worlds
 		dialogueBox.textArray =
 		    new Array("Well that didn't go as well as we had hoped...",
 			      "How about you try this for a change of pace.");
-		nextJob = new World2();		
+		nextJob = new SwitchboardWorld();		
 	    }
 	    add(dialogueBox);
 
