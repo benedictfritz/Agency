@@ -20,7 +20,7 @@ package worlds
 	public function FiremanWorld():void {
 	    addGraphic(new Image(BACKGROUND));
 
-	    _timer = new Timer(FP.width - 120, 20, 10);
+	    _timer = new Timer(10);
 	    add(_timer);
 
 	    _fireman = new Fireman(-130, FP.height - 70);
