@@ -8,11 +8,15 @@ package worlds
     public class TrampolineCatcher extends World {
 
 	private var
-	    _timer:Timer;
+	    _timer:Timer,
+	    _fireman:Fireman;
 	
 	public function TrampolineCatcher():void {
-	    _timer = new Timer(FP.halfWidth, FP.halfHeight, 5);
+	    _timer = new Timer(FP.width - 120, 20, 10);
 	    add(_timer);
+
+	    _fireman = new Fireman(-130, FP.height - 70);
+	    add(_fireman);
 	}
 
 	override public function update():void {
