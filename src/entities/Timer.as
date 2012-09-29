@@ -21,6 +21,7 @@ package entities
 	}
 
 	override public function update():void {
+	    super.update();
 	    if (finished) { return; }
 
 	    _time -= FP.elapsed;
@@ -31,12 +32,8 @@ package entities
 
 	    // get to specific decimal point accuracy
 	    var _timeString:String = String(int(_time * 100)/100.0);
-	    _timerText = new Text(_timeString, 0, 0, { align:"center", size:50 });
+	    _timerText = new Text(_timeString, 0, 0, { align:"right", size:50 });
 	    graphic = _timerText;
-	    super.update();
 	}
-
     }
-      
-    
 }
