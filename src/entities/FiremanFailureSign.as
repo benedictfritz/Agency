@@ -12,8 +12,6 @@ package entities
 	    _text:Text;
 
 	public function FiremanFailureSign() {
-	    FP.console.log("Failure sign");
-
 	    _text = new Text("Failure", 0, 0, { size: 64, color: 0xFF0000 });
 	    graphic = _text;
 

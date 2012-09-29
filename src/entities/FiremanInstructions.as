@@ -9,7 +9,7 @@ package entities
 	    _text:Text;
 
 	public function FiremanInstructions() {
-	    _text = new Text("press space to play again!", 0, 0, 
+	    _text = new Text("press space to do your job!", 0, 0, 
 			     { size:24, color:0x00FF00 });
 	    graphic = _text;
 	    super(FP.halfWidth - _text.width/2,
