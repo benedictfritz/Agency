@@ -51,6 +51,7 @@ package worlds
 		if (_success) {
 		    _done = true;
 		    add(new FiremanSuccessSign());
+		    add(new FiremanInstructions());
 		    MoneyTracker.money += 100;
 		    // FP.alarm(2, playAgain);
 		}
