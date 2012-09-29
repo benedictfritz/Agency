@@ -40,7 +40,7 @@ package entities
 	    else {
 		var centerOfScreenX:Number = FP.halfWidth - this.width/2;
 		var goingRight:Boolean;
-		if (x < centerOfScreenX) { 
+		if (x <= centerOfScreenX) {
 		    goingRight = true;
 		    _vx += _accel;
 		    if (_vx > DEFAULT_VX) { _vx = DEFAULT_VX; }
@@ -55,6 +55,7 @@ package entities
 		// stop the default behavior from bouncing back and forth
 		if (goingRight && (x > centerOfScreenX)
 		    || !goingRight && (x < centerOfScreenX)) {
+		    FP.console.log("Stop");
 		    x = centerOfScreenX;
 		    _vx = 0;
 		}
