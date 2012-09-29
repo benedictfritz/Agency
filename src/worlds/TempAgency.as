@@ -34,6 +34,8 @@ package worlds
 	    }
 	    add(dialogueBox);
 
+	    dialogueBox.advanceText();
+
 	    currentJobNumber++;
 	}
 
