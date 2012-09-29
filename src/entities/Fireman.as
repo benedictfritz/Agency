@@ -29,9 +29,8 @@ package entities
 	    _firemanSprite.centerOO();
 	    graphic = _firemanSprite;
 
-	    setHitbox(61, 20, -40, -32);
+	    setHitbox(61, 10);
 
-	    // setHitbox(_firemanSprite.width, _firemanSprite.height);
 	    this.centerOrigin();
 	}
 

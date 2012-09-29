@@ -29,7 +29,7 @@ package worlds
 	    _fireman = new Fireman(-130, FP.height - 80);
 	    add(_fireman);
 
-	    _faller = new Faller(FP.halfWidth - 20, 50);
+	    _faller = new Faller(FP.halfWidth, 50);
 	    add(_faller);
 
 	    add(new MoneyTracker());
