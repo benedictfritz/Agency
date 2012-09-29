@@ -7,8 +7,8 @@ package entities
 
     public class Faller extends Entity {
 	
-	private var
-	    _vy:Number = 0;
+	public var
+	    vy:Number = 0;
 
 	[Embed(source="../../assets/images/faller.png")]
 	    private const FALLER:Class;
@@ -23,13 +23,6 @@ package entities
 	    graphic = fallerImg;
 	    setHitbox(50, 22, 20, 15);
 
-	    // delay the jump
-	    FP.alarm(5, function():void { _vy = 50; });
-	    FP.alarm(5.5, function():void {
-		    var _rotationTween:VarTween = new VarTween();
-		    _rotationTween.tween(fallerImg, "angle", 0, 1);
-		    addTween(_rotationTween);
-		});
 	    this.centerOrigin();
 	}
 
@@ -37,12 +30,12 @@ package entities
 	    super.update();
 
 	    if (y < FP.height - 30) {
-		moveBy(0, FP.elapsed*_vy);
+		moveBy(0, FP.elapsed*vy);
 	    }
 	}
 
 	public function stop():void {
-	    _vy = 0;
+	    vy = 0;
 	}
 
     }
