@@ -11,7 +11,8 @@ package worlds
 	    _timer:Timer,
 	    _fireman:Fireman,
 	    _faller:Faller,
-	    _success:Boolean = false;
+	    _success:Boolean = false,
+	    _done:Boolean = false;
 	
 	public function TrampolineCatcher():void {
 	    _timer = new Timer(FP.width - 120, 20, 10);
@@ -27,6 +28,8 @@ package worlds
 	override public function update():void {
 	    super.update();
 
+	    if (_done) { return; }
+
 	    if (_faller.collideWith(_fireman, _faller.x, _faller.y) != null) {
 		_faller.stop();
 		_fireman.stop();
@@ -35,12 +38,20 @@ package worlds
 
 	    if (_timer.finished) {
 		if (_success) {
+		    _done = true;
 		    add(new SuccessSign());
+		    FP.alarm(2, playAgain);
 		}
 		else {
+		    _done = true;
 		    FP.world = new TempAgency();
 		}
 	    }
 	}
+
+	private function playAgain():void {
+	    FP.world = new TrampolineCatcher();
+	}
     }
+
 }
