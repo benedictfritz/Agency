@@ -2,10 +2,13 @@ package worlds
 {
     import net.flashpunk.FP;
     import net.flashpunk.World;
+    import net.flashpunk.graphics.Image;
 
     import entities.*;
 
-    public class TrampolineCatcher extends World {
+    public class FiremanWorld extends World {
+	[Embed(source="../../assets/images/fireman_background.png")]
+	    private const BACKGROUND:Class;
 
 	private var
 	    _timer:Timer,
@@ -14,14 +17,16 @@ package worlds
 	    _success:Boolean = false,
 	    _done:Boolean = false;
 	
-	public function TrampolineCatcher():void {
+	public function FiremanWorld():void {
+	    addGraphic(new Image(BACKGROUND));
+
 	    _timer = new Timer(FP.width - 120, 20, 10);
 	    add(_timer);
 
 	    _fireman = new Fireman(-130, FP.height - 70);
 	    add(_fireman);
 
-	    _faller = new Faller(FP.halfWidth - 20, -40);
+	    _faller = new Faller(FP.halfWidth - 20, 50);
 	    add(_faller);
 
 	    add(new MoneyTracker());
@@ -42,9 +47,9 @@ package worlds
 	    if (_timer.finished && !_done) {
 		if (_success) {
 		    _done = true;
-		    add(new SuccessSign());
+		    add(new FiremanSuccessSign());
 		    MoneyTracker.money += 100;
-		    FP.alarm(2, playAgain);
+		    // FP.alarm(2, playAgain);
 		}
 		else {
 		    _done = true;
@@ -54,7 +59,7 @@ package worlds
 	}
 
 	private function playAgain():void {
-	    FP.world = new TrampolineCatcher();
+	    FP.world = new FiremanWorld();
 	}
     }
 

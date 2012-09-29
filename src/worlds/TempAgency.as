@@ -32,7 +32,7 @@ package worlds
 		dialogueBox.textArray =
 		    new Array("Welcome to the temp agency.",
 			      "Looks like we found a new job for you.");
-		nextJob = new TrampolineCatcher();
+		nextJob = new FiremanWorld();
 	    }
 	    if (currentJobNumber == 1) {
 		dialogueBox.textArray =
