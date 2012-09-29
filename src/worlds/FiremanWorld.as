@@ -57,7 +57,8 @@ package worlds
 		}
 		else {
 		    _done = true;
-		    FP.world = new TempAgency();
+		    add(new FiremanFailureSign());
+		    FP.alarm(4, function():void { FP.world = new TempAgency(); });
 		}
 	    }
 	}
