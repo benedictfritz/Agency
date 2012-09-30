@@ -44,7 +44,7 @@ package worlds
 	    _fireSound = new Sfx(FIRE);
 
 	    _timer = new Timer(10);
-	    add(_timer);
+	    // add(_timer);
 
 	    _fireman = new Fireman(-70, FP.height - 80);
 	    add(_fireman);
