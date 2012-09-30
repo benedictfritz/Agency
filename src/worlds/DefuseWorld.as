@@ -39,6 +39,8 @@ package worlds
 	    _music = new Sfx(MUSIC);
 	    _win = new Sfx(WIN);
 	    _explosion = new Sfx(EXPLOSION);
+
+	    add(new MoneyTracker());
 	}
 
 	override public function begin():void {
@@ -59,6 +61,9 @@ package worlds
 	    	_music.stop();
 		_done = true;
 		_win.loop();
+		add(new DefuseSuccessSign());
+		add(new DefuseInstructions());
+		MoneyTracker.money += 100;
 		removeTween(_blinkTween);
 	    }
 	    if (_done) {
