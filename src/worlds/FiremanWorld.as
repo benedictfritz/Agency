@@ -19,7 +19,8 @@ package worlds
 	    _fireman:Fireman,
 	    _faller:Faller,
 	    _success:Boolean = false,
-	    _done:Boolean = false;
+	    _done:Boolean = false,
+	    _blackCover:Image;
 	
 	public function FiremanWorld():void {
 	    var backgroundSprite:Spritemap = new Spritemap(BACKGROUND, 640, 480);
@@ -36,12 +37,14 @@ package worlds
 	    _faller = new Faller(FP.halfWidth, 50);
 	    add(_faller);
 
+	    _blackCover = Image.createRect(FP.width, FP.height, 0x000000);
+
 	    add(new MoneyTracker());
 	}
 
 	override public function begin():void {
 	    // rotate faller
-	    FP.alarm(2, function():void { _faller.vy = 50; });
+	    FP.alarm(2, function():void { _faller.vy = 47; });
 	    FP.alarm(2.5, function():void {
 		    var _rotationTween:VarTween = new VarTween();
 		    _rotationTween.tween(Image(_faller.graphic), "angle", 0, 1);
@@ -75,7 +78,8 @@ package worlds
 		}
 		else {
 		    _done = true;
-		    add(new FiremanFailureSign());
+		    addGraphic(_blackCover, -100);
+		    // add(new FiremanFailureSign());
 		    FP.alarm(4, function():void { FP.world = new TempAgency(); });
 		}
 	    }
