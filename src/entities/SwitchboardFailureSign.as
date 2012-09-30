@@ -7,11 +7,11 @@ package entities
     import net.flashpunk.graphics.Text;
     import net.flashpunk.tweens.misc.VarTween;
 
-    public class FiremanFailureSign extends Entity {
+    public class SwitchboardFailureSign extends Entity {
 	private var
 	    _text:Text;
 
-	public function FiremanFailureSign() {
+	public function SwitchboardFailureSign() {
 	    _text = new Text("Failure", 0, 0, { size: 64, color: 0xFF0000 });
 	    graphic = _text;
 
@@ -23,5 +23,4 @@ package entities
 	    FP.world.addTween(_enterTween);
 	}
     }
-    
 }

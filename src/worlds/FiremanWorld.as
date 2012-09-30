@@ -19,6 +19,8 @@ package worlds
 	    private static var MUSIC:Class;
 	[Embed(source="../../assets/sounds/win.mp3")]
 	    private static var WIN:Class;
+	[Embed(source="../../assets/sounds/fire.mp3")]
+	    private static var FIRE:Class;
 
 	private var
 	    _timer:Timer,
@@ -28,7 +30,8 @@ package worlds
 	    _done:Boolean = false,
 	    _blackCover:Image,
 	    _music:Sfx,
-	    _winMusic:Sfx;
+	    _winMusic:Sfx,
+	    _fireSound:Sfx;
 	
 	public function FiremanWorld():void {
 	    var backgroundSprite:Spritemap = new Spritemap(BACKGROUND, 640, 480);
@@ -38,6 +41,7 @@ package worlds
 
 	    _music = new Sfx(MUSIC);
 	    _winMusic = new Sfx(WIN);
+	    _fireSound = new Sfx(FIRE);
 
 	    _timer = new Timer(10);
 	    add(_timer);
@@ -62,6 +66,7 @@ package worlds
 		    addTween(_rotationTween);
 		});
 	    _music.loop();
+	    _fireSound.loop(0.1);
 	}
 
 	override public function update():void {

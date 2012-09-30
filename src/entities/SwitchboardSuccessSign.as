@@ -7,15 +7,19 @@ package entities
     import net.flashpunk.graphics.Text;
     import net.flashpunk.tweens.misc.VarTween;
 
-    public class FiremanSuccessSign extends Entity {
+    public class SwitchboardSuccessSign extends Entity {
 	private var
 	    _text:Text,
 	    _growTextTween:VarTween,
 	    _shrinkTextTween:VarTween;
 
-	public function FiremanSuccessSign() {
-	    _text = new Text("Great job!", 0, 0, { size: 64, color: 0x00FF00 });
+	public function SwitchboardSuccessSign() {
+	    _text = new Text("Successful connection!", 0, 0,
+			     { width: 400, height: 100, size: 52, 
+			       color: 0x00FF00, wordWrap:true, align:"center" });
 	    graphic = _text;
+
+	    layer = -100;
 
 	    growText();
 
@@ -41,6 +45,7 @@ package entities
 	    _shrinkTextTween.tween(_text, "scale", 1, 0.25, Ease.sineInOut);
 	    FP.world.addTween(_shrinkTextTween);
 	}
+
 	
     }
 }
