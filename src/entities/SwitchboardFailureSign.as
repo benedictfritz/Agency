@@ -12,8 +12,10 @@ package entities
 	    _text:Text;
 
 	public function SwitchboardFailureSign() {
-	    _text = new Text("Failure", 0, 0, { size: 64, color: 0xFF0000 });
+	    _text = new Text("WHAT HAVE YOU DONE?", 0, 0, { size: 52, color: 0xFF0000 });
 	    graphic = _text;
+
+	    layer = -100;
 
 	    super(FP.halfWidth - _text.width/2, -_text.height);
 

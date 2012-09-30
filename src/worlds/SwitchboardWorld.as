@@ -19,6 +19,8 @@ package worlds
 	    private static var MUSIC:Class;
 	[Embed(source="../../assets/sounds/win.mp3")]
 	    private static var WIN:Class;
+	[Embed(source="../../assets/sounds/lose.mp3")]
+	    private static var LOSE:Class;
 	[Embed(source="../../assets/sounds/grandma_benedict.mp3")]
 	    private static var CALL1:Class;
 	[Embed(source="../../assets/sounds/grandma_ethel.mp3")]
@@ -43,7 +45,8 @@ package worlds
 	    trueCorrectAnswer:int,
 	    connector:Image,
 	    music:Sfx,
-	    winMusic:Sfx;
+	    winMusic:Sfx,
+	    loseMusic:Sfx;
 
 	public function SwitchboardWorld():void {
 	    addGraphic(new Image(BACKGROUND));
@@ -52,6 +55,8 @@ package worlds
 	    trueCorrectAnswer = int(FP.random*8+1);
 	    music = new Sfx(MUSIC);
 	    winMusic = new Sfx(WIN);
+	    loseMusic = new Sfx(LOSE, 
+				function():void { FP.world = new TempAgency(); } );
 	}
 
 	override public function begin():void {
@@ -123,6 +128,7 @@ package worlds
 	    }
 	    else {
 		add(new SwitchboardFailureSign());
+		loseMusic.play(1);
 	    }
 	}
 
