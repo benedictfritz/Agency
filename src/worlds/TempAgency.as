@@ -1,6 +1,7 @@
 package worlds
 {
     import net.flashpunk.FP;
+    import net.flashpunk.Sfx;
     import net.flashpunk.World;
     import net.flashpunk.utils.Key;
     import net.flashpunk.utils.Input;
@@ -16,14 +17,21 @@ package worlds
 	private var
 	    dialogueBox:DialogueBox,
 	    jobsArray:Array,
-	    nextJob:World;
+	    nextJob:World,
+	    music:Sfx;
 
 	[Embed(source="../../assets/images/agency_background.png")]
 	    private const BACKGROUND:Class;
 
+	[Embed(source="../../assets/sounds/temp_agency.mp3")]
+	    private static var MUSIC:Class;
+
 	public function TempAgency():void {
 	    addGraphic(new Image(BACKGROUND));
 	    add(new MoneyTracker);
+
+	    music = new Sfx(MUSIC);
+	    music.loop();
 
 	    dialogueBox = new DialogueBox(FP.halfWidth - 80, 10,
 					  FP.halfWidth + 80, FP.halfHeight);
@@ -50,7 +58,10 @@ package worlds
 	override public function update():void {
 	    super.update();
 
-	    if (dialogueBox.done) { FP.world = nextJob; }
+	    if (dialogueBox.done) {
+		music.stop();
+		FP.world = nextJob;
+	    }
 
 	    if (Input.pressed(Key.X)) { dialogueBox.advanceText(); }
 	}

@@ -1,6 +1,7 @@
 package worlds
 {
     import net.flashpunk.FP;
+    import net.flashpunk.Sfx;
     import net.flashpunk.World;
     import net.flashpunk.utils.Key;
     import net.flashpunk.utils.Input;
@@ -14,19 +15,29 @@ package worlds
 	[Embed(source="../../assets/images/fireman_background.png")]
 	    private const BACKGROUND:Class;
 
+	[Embed(source="../../assets/sounds/working.mp3")]
+	    private static var MUSIC:Class;
+	[Embed(source="../../assets/sounds/win.mp3")]
+	    private static var WIN:Class;
+
 	private var
 	    _timer:Timer,
 	    _fireman:Fireman,
 	    _faller:Faller,
 	    _success:Boolean = false,
 	    _done:Boolean = false,
-	    _blackCover:Image;
+	    _blackCover:Image,
+	    _music:Sfx,
+	    _winMusic:Sfx;
 	
 	public function FiremanWorld():void {
 	    var backgroundSprite:Spritemap = new Spritemap(BACKGROUND, 640, 480);
 	    backgroundSprite.add("burn", [0, 1], 14, true);
 	    backgroundSprite.play("burn");
 	    addGraphic(backgroundSprite);
+
+	    _music = new Sfx(MUSIC);
+	    _winMusic = new Sfx(WIN);
 
 	    _timer = new Timer(10);
 	    add(_timer);
@@ -50,6 +61,7 @@ package worlds
 		    _rotationTween.tween(Image(_faller.graphic), "angle", 0, 1);
 		    addTween(_rotationTween);
 		});
+	    _music.loop();
 	}
 
 	override public function update():void {
@@ -57,6 +69,7 @@ package worlds
 
 	    if (_done && _success) { 
 		if (Input.check(Key.SPACE)) {
+		    _winMusic.stop();
 		    FP.world = new FiremanWorld();
 		}
 	    }
@@ -71,6 +84,8 @@ package worlds
 
 	    if (_timer.finished && !_done) {
 		if (_success) {
+		    _winMusic.loop();
+		    _music.stop();
 		    _done = true;
 		    add(new FiremanSuccessSign());
 		    add(new FiremanInstructions());
@@ -79,7 +94,7 @@ package worlds
 		else {
 		    _done = true;
 		    addGraphic(_blackCover, -100);
-		    // add(new FiremanFailureSign());
+		    _music.stop();
 		    FP.alarm(4, function():void { FP.world = new TempAgency(); });
 		}
 	    }
