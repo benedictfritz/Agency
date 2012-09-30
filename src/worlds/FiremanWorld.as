@@ -21,6 +21,8 @@ package worlds
 	    private static var WIN:Class;
 	[Embed(source="../../assets/sounds/fire.mp3")]
 	    private static var FIRE:Class;
+	[Embed(source="../../assets/sounds/splat.mp3")]
+	    private static var SPLAT:Class;
 
 	private var
 	    _timer:Timer,
@@ -30,6 +32,7 @@ package worlds
 	    _done:Boolean = false,
 	    _blackCover:Image,
 	    _music:Sfx,
+	    _splat:Sfx,
 	    _winMusic:Sfx,
 	    _fireSound:Sfx;
 	
@@ -42,9 +45,10 @@ package worlds
 	    _music = new Sfx(MUSIC);
 	    _winMusic = new Sfx(WIN);
 	    _fireSound = new Sfx(FIRE);
+	    _splat = new Sfx(SPLAT);
 
 	    _timer = new Timer(10);
-	    // add(_timer);
+	    add(_timer);
 
 	    _fireman = new Fireman(-70, FP.height - 80);
 	    add(_fireman);
@@ -91,6 +95,7 @@ package worlds
 		if (_success) {
 		    _winMusic.loop();
 		    _music.stop();
+		    _fireSound.stop();
 		    _done = true;
 		    add(new FiremanSuccessSign());
 		    add(new FiremanInstructions());
@@ -98,6 +103,8 @@ package worlds
 		}
 		else {
 		    _done = true;
+		    _fireSound.stop();
+		    _splat.play();
 		    addGraphic(_blackCover, -100);
 		    _music.stop();
 		    FP.alarm(4, function():void { FP.world = new TempAgency(); });

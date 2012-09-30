@@ -19,6 +19,8 @@ package entities
 	override public function update():void {
 	    super.update();
 
+	    layer = -100;
+
 	    _moneyText = new Text("$"+String(money), 0, 0, 
 				  { size: 46, color: 0x00FF00} );
 	    graphic = _moneyText;

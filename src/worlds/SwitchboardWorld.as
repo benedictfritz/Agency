@@ -46,11 +46,11 @@ package worlds
 	    connector:Image,
 	    music:Sfx,
 	    winMusic:Sfx,
-	    loseMusic:Sfx;
+	    loseMusic:Sfx,
+	    moneyTracker:MoneyTracker;
 
 	public function SwitchboardWorld():void {
 	    addGraphic(new Image(BACKGROUND));
-	    add(new MoneyTracker());
 	    connector = new Image(CONNECTOR);
 	    trueCorrectAnswer = int(FP.random*8+1);
 	    music = new Sfx(MUSIC);
@@ -61,9 +61,13 @@ package worlds
 
 	override public function begin():void {
 	    music.loop(0.6);
+
+	    add(new MoneyTracker());
 	}
 
 	override public function update():void {
+	    super.update();
+
 	    if (!hasSelected) {
 		if (Input.pressed(Key.DIGIT_1)) {
 		    hasSelected = true;
@@ -122,6 +126,7 @@ package worlds
 	    done = true;
 
 	    if (success) {
+		MoneyTracker.money += 20;
 		add(new SwitchboardSuccessSign());
 		add(new SwitchboardInstructions());
 		winMusic.loop();

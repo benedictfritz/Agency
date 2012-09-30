@@ -18,6 +18,8 @@ package worlds
 	    private static var WIN:Class;
 	[Embed(source="../../assets/sounds/explosion.mp3")]
 	    private static var EXPLOSION:Class;
+	[Embed(source="../../assets/sounds/plug.mp3")]
+	    private static var PLUG:Class;
 	[Embed(source="../../assets/images/defuse_background.png")]
 	    private const BACKGROUND:Class;
 
@@ -28,6 +30,7 @@ package worlds
 	    _explosion:Sfx,
 	    _music:Sfx,
 	    _win:Sfx,
+	    _plug:Sfx,
 	    _done:Boolean;
 
 	public function DefuseWorld():void {
@@ -39,6 +42,7 @@ package worlds
 	    _music = new Sfx(MUSIC);
 	    _win = new Sfx(WIN);
 	    _explosion = new Sfx(EXPLOSION);
+	    _plug = new Sfx(PLUG);
 
 	    add(new MoneyTracker());
 	}
@@ -57,6 +61,7 @@ package worlds
 	    super.update();
 	    if(!_done && (Input.check(Key.R) || Input.check(Key.G) || 
 			 Input.check(Key.B)) || Input.check(Key.Y)) {
+		_plug.play();
 	    	remove(_blinkingLight);
 	    	_music.stop();
 		_done = true;

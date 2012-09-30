@@ -38,16 +38,30 @@ package worlds
 
 	    if (currentJobNumber == 0) {
 		dialogueBox.textArray =
-		    new Array("Welcome to the temp agency.",
-			      "Looks like we found a new job for you.");
-		nextJob = new FiremanWorld();
+		    new Array("Welcome to Semantics Agency of Temporary Empoyment.", "I'll be your supervisor, Ray Jepson.", "Let's see here, a masters in astrophysics?", "Let's start you off as telephone operator.", "Ethyl is the only one who still uses the operator, so just connect her to a friend and you'll be fine.");
+		nextJob = new SwitchboardWorld();
 	    }
 	    if (currentJobNumber == 1) {
 		dialogueBox.textArray =
-		    new Array("Well that didn't go as well as we had hoped...",
-			      "How about you try this for a change of pace.");
-		nextJob = new SwitchboardWorld();		
+		    new Array("Maybe we started you off a little too quickly.", "Let's try something a bit slower.");
+		nextJob = new FiremanWorld();		
 	    }
+	    if (currentJobNumber == 2) {
+		dialogueBox.textArray =
+		    new Array("Well that didn't go quite as planned.", "You responded surprisingly well to the fire; I only wish we could say the same for the civilians.", "Perhaps you should try something with fewer people skills.", "Bomb squad?");
+
+		nextJob = new DefuseWorld();
+	    }
+	    if (currentJobNumber == 3) {
+		dialogueBox.textArray =
+		    new Array("You're looking well, considering.", "Some quiet time in the kitchen could really do you some good.");
+		nextJob = new CookingWorld();
+	    }
+	    if (currentJobNumber == 4) {
+		dialogueBox.textArray =	new Array("Don't worry, I mix up soap and sopa all the time.", "Unfortunately, the restaurant owners aren't so understanding and are suing you.", "Sorry.");
+		nextJob = new Credits();
+	    }
+
 	    add(dialogueBox);
 
 	    dialogueBox.advanceText();
@@ -63,7 +77,7 @@ package worlds
 		FP.world = nextJob;
 	    }
 
-	    if (Input.pressed(Key.X)) { dialogueBox.advanceText(); }
+	    if (Input.pressed(Key.SPACE)) { dialogueBox.advanceText(); }
 	}
     }
 }

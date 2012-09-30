@@ -18,7 +18,7 @@ package entities
 	    super(FP.width - _widthText.width, 0);
 
 	    _time = startTime;
-	    graphic = _timerText;
+	    // graphic = _timerText;
 	}
 
 	override public function update():void {
@@ -32,11 +32,11 @@ package entities
 	    }
 
 	    // get to specific decimal point accuracy
-	    var _timeString:String = String(int(_time * 100)/100.0);
+	    // var _timeString:String = String(int(_time * 100)/100.0);
 	    // make sure we don't show 0 as '0', but '0.00'
-	    if (_time == 0) { _timeString = "0.00"; }
-	    _timerText = new Text(_timeString, 0, 0, { align:"right", size:50 });
-	    graphic = _timerText;
+	    // if (_time == 0) { _timeString = "0.00"; }
+	    // _timerText = new Text(_timeString, 0, 0, { align:"right", size:50 });
+	    // graphic = _timerText;
 	}
     }
 }
